@@ -934,8 +934,8 @@
                 "kind": "ElementReference",
                 "name": "panel-2"
               },
-              "height": 6,
-              "width": 12,
+              "height": 4,
+              "width": 8,
               "x": 0,
               "y": 5
             }
