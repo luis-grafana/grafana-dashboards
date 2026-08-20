@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
+          "name": "Annotations \u0026 Alerts",
           "query": {
             "datasource": {
               "name": "-- Grafana --"
@@ -128,7 +128,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-32083615687"
           }
         }
       },
@@ -341,7 +341,7 @@
                 }
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-32083615687"
           }
         }
       },
@@ -434,7 +434,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-32083615687"
           }
         }
       },
@@ -595,7 +595,7 @@
                 }
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-32083615687"
           }
         }
       },
@@ -717,7 +717,7 @@
                 }
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-32083615687"
           }
         }
       },
@@ -776,7 +776,7 @@
                 "wrapLogMessage": true
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-32083615687"
           }
         }
       },
@@ -905,7 +905,7 @@
                 }
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-32083615687"
           }
         }
       }
@@ -934,8 +934,8 @@
                 "kind": "ElementReference",
                 "name": "panel-2"
               },
-              "height": 6,
-              "width": 12,
+              "height": 4,
+              "width": 7,
               "x": 0,
               "y": 5
             }
