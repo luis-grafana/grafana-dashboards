@@ -1,0 +1,1042 @@
+{
+  "apiVersion": "dashboard.grafana.app/v2",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "velocity_ship_v1"
+  },
+  "spec": {
+    "annotations": [
+      {
+        "kind": "AnnotationQuery",
+        "spec": {
+          "builtIn": true,
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "query": {
+            "datasource": {
+              "name": "-- Grafana --"
+            },
+            "group": "grafana",
+            "kind": "DataQuery",
+            "spec": {},
+            "version": "v0"
+          }
+        }
+      }
+    ],
+    "cursorSync": "Off",
+    "editable": true,
+    "elements": {
+      "panel-1": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "group": "testdata",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "alias": "On-Time Delivery",
+                        "scenarioId": "random_walk"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 1,
+          "links": [],
+          "title": "Amazon SLA Status (Global)",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "View Logs",
+                      "url": "/explore?left={\"datasource\":\"grafanacloud-logs\",\"queries\":[{\"refId\":\"A\",\"expr\":\"{job=\\\"${__field.labels.job}\\\"}\",\"queryType\":\"range\"}],\"range\":{\"from\":\"${__from}\",\"to\":\"${__to}\"}}"
+                    },
+                    {
+                      "targetBlank": false,
+                      "title": "View Metrics",
+                      "url": "/explore?left={\"datasource\":\"grafanacloud-prom\",\"queries\":[{\"refId\":\"A\",\"expr\":\"${__field.name}{job=\\\"${__field.labels.job}\\\"}\",\"queryType\":\"range\"}],\"range\":{\"from\":\"${__from}\",\"to\":\"${__to}\"}}"
+                    },
+                    {
+                      "targetBlank": false,
+                      "title": "View Traces",
+                      "url": "/explore?left={\"datasource\":\"grafanacloud-traces\",\"queries\":[{\"refId\":\"A\",\"query\":\"{resource.service.name=\\\"${__field.labels.service_name}\\\"}\",\"queryType\":\"traceql\"}],\"range\":{\"from\":\"${__from}\",\"to\":\"${__to}\"}}"
+                    }
+                  ],
+                  "max": 100,
+                  "min": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": 0
+                      },
+                      {
+                        "color": "orange",
+                        "value": 98
+                      },
+                      {
+                        "color": "green",
+                        "value": 98.5
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              }
+            },
+            "version": "13.2.0-31997728368"
+          }
+        }
+      },
+      "panel-10": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "af99i29pl69s0d"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "expr": "100 * (sum by(service) (rate(web_http_4xx_clients_errors[$__rate_interval])) / sum by(service) (rate(web_http_requests[$__rate_interval])))",
+                        "instant": false,
+                        "legendFormat": "{{service}} - Client Errors",
+                        "queryType": "range",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "af99i29pl69s0d"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "expr": "100 * (sum by(service) (rate(web_http_5xx_errors[$__rate_interval])) / sum by(service) (rate(web_http_requests[$__rate_interval])))",
+                        "instant": false,
+                        "legendFormat": "{{service}} - Server Errors",
+                        "queryType": "range",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "B"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "Visualizing real-time delivery app stability across the vehicle fleet. Yellow/orange indicates minor issues (app errors, GPS failures), red indicates critical failures (app crashes, complete connectivity loss).",
+          "id": 10,
+          "links": [],
+          "title": "IoT Fleet Health: 45,000 Delivery Vehicles",
+          "vizConfig": {
+            "group": "status-history",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "custom": {
+                    "axisPlacement": "auto",
+                    "fillOpacity": 80,
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "lineWidth": 1
+                  },
+                  "links": [
+                    {
+                      "title": "View Logs for ${__field.labels.service}",
+                      "url": "/explore?left={\"datasource\":\"grafanacloud-logs\",\"queries\":[{\"refId\":\"A\",\"expr\":\"{service_name=\\\"${__field.labels.service}\\\"}\",\"queryType\":\"range\"}],\"range\":{\"from\":\"${__from}\",\"to\":\"${__to}\"}}"
+                    },
+                    {
+                      "title": "View Metrics for ${__field.labels.service}",
+                      "url": "/explore?left={\"datasource\":\"af99i29pl69s0d\",\"queries\":[{\"refId\":\"A\",\"expr\":\"rate(web_http_requests{service=\\\"${__field.labels.service}\\\"}[$__rate_interval])\",\"queryType\":\"range\"}],\"range\":{\"from\":\"${__from}\",\"to\":\"${__to}\"}}"
+                    },
+                    {
+                      "title": "View Traces for ${__field.labels.service}",
+                      "url": "/explore?left={\"datasource\":\"grafanacloud-traces\",\"queries\":[{\"refId\":\"A\",\"query\":\"{resource.service.name=\\\"${__field.labels.service}\\\"}\",\"queryType\":\"traceql\"}],\"range\":{\"from\":\"${__from}\",\"to\":\"${__to}\"}}"
+                    }
+                  ],
+                  "max": 100,
+                  "min": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 1
+                      },
+                      {
+                        "color": "orange",
+                        "value": 5
+                      },
+                      {
+                        "color": "red",
+                        "value": 10
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "web_app_1 - Client Errors"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Dallas Region - Driver App Errors"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "web_app_1 - Server Errors"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Dallas Region - System Failures"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "web_app_2 - Client Errors"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Chicago Region - Driver App Errors"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "web_app_2 - Server Errors"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Chicago Region - System Failures"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "web_app_3 - Client Errors"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Seattle Region - Driver App Errors"
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "web_app_3 - Server Errors"
+                    },
+                    "properties": [
+                      {
+                        "id": "displayName",
+                        "value": "Seattle Region - System Failures"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "options": {
+                "colWidth": 0.9,
+                "legend": {
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "rowHeight": 0.9,
+                "showValue": "never",
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              }
+            },
+            "version": "13.2.0-31997728368"
+          }
+        }
+      },
+      "panel-2": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "af99i29pl69s0d"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "avg(up) * 100",
+                        "instant": false,
+                        "legendFormat": "Accuracy",
+                        "queryType": "range",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 2,
+          "links": [],
+          "title": "Tracking Accuracy",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "max": 100,
+                  "min": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": 0
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 95
+                      },
+                      {
+                        "color": "green",
+                        "value": 99.9
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              }
+            },
+            "version": "13.2.0-31997728368"
+          }
+        }
+      },
+      "panel-3": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "ff99wbw826u4ge"
+                      },
+                      "group": "grafana-testdata-datasource",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "csvContent": "Time,lat,lon,health,dc_name,packages_per_hour\n1,49.28,-123.12,98,Vancouver DC,15000\n2,45.52,-122.68,97,Portland DC,18000\n3,47.61,-122.33,82,Seattle DC,22000\n4,43.65,-79.38,98,Toronto DC,19000\n5,45.51,-73.56,97,Montreal DC,16000\n6,37.77,-122.42,87,San Francisco DC,25000\n7,34.05,-118.24,78,Los Angeles DC,28000\n8,32.72,-117.16,96,San Diego DC,17000\n9,33.45,-112.07,97,Phoenix DC,20000\n10,39.74,-104.99,98,Denver DC,21000\n11,29.76,-95.37,89,Houston DC,26000\n12,32.78,-96.80,96,Dallas DC,24000\n13,33.75,-84.39,96,Atlanta DC,23000\n14,25.76,-80.19,94,Miami DC,27000\n15,28.54,-81.38,91,Orlando DC,22000\n16,41.88,-87.63,81,Chicago DC,29000\n17,40.71,-74.01,75,New York City DC,32000\n18,42.36,-71.06,96,Boston DC,24000\n19,38.90,-77.04,95,Washington DC,27000\n20,39.95,-75.16,95,Philadelphia DC,25000\n21,42.33,-83.05,88,Detroit DC,23000\n22,44.98,-93.27,98,Minneapolis DC,22000\n23,39.10,-94.58,98,Kansas City DC,19000\n24,35.22,-80.84,97,Charlotte DC,20000\n25,30.27,-97.74,97,Austin DC,19000\n26,36.17,-86.78,97,Nashville DC,18000\n27,38.63,-90.20,97,St. Louis DC,20000\n28,39.76,-86.16,96,Indianapolis DC,21000\n29,40.44,-79.99,96,Pittsburgh DC,21000\n30,35.15,-90.05,97,Memphis DC,21000\n31,36.08,-115.17,86,Las Vegas DC,26000\n32,33.52,-86.80,96,Birmingham DC,19000\n33,35.47,-97.52,97,Oklahoma City DC,15000\n34,29.42,-98.49,96,San Antonio DC,18000\n35,30.33,-81.66,97,Jacksonville DC,17000\n36,27.95,-82.46,96,Tampa DC,19000\n37,40.76,-111.89,98,Salt Lake City DC,16000\n38,43.61,-116.20,97,Boise DC,16000\n39,35.78,-78.64,97,Raleigh DC,21000\n40,32.78,-79.93,97,Charleston DC,16000\n41,51.04,-114.07,98,Calgary DC,14000\n42,36.85,-76.29,96,Norfolk DC,19000\n43,37.54,-77.43,96,Richmond DC,20000\n44,36.07,-79.79,97,Greensboro DC,17000\n45,34.00,-81.03,97,Columbia DC,18000\n46,26.12,-80.14,95,Fort Lauderdale DC,24000\n47,30.45,-84.28,96,Tallahassee DC,15000\n48,30.69,-88.04,97,Mobile DC,16000\n49,32.37,-86.30,97,Montgomery DC,17000\n50,35.05,-89.98,96,Memphis East DC,20000",
+                        "range": true,
+                        "scenarioId": "csv_content"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "Real-time operational health across 500+ distribution centers. Color indicates system health: Green (healthy), Yellow (degraded), Red (critical). Size represents daily package volume.",
+          "id": 3,
+          "links": [],
+          "title": "Distribution Center Health Map - North America",
+          "vizConfig": {
+            "group": "geomap",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "custom": {
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    }
+                  },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "View Logs for ${__data.fields.dc_name}",
+                      "url": "/explore?left={\"datasource\":\"P8E80F9AEF21F6940\",\"queries\":[{\"expr\":\"{dc_name=\\\"${__data.fields.dc_name}\\\"}\",\"refId\":\"A\"}],\"range\":{\"from\":\"now-1h\",\"to\":\"now\"}}"
+                    },
+                    {
+                      "targetBlank": false,
+                      "title": "View Metrics for ${__data.fields.dc_name}",
+                      "url": "/explore?left={\"datasource\":\"prometheus\",\"queries\":[{\"expr\":\"dc_health{dc_name=\\\"${__data.fields.dc_name}\\\"}\",\"refId\":\"A\"}],\"range\":{\"from\":\"now-1h\",\"to\":\"now\"}}"
+                    },
+                    {
+                      "targetBlank": false,
+                      "title": "View Traces for ${__data.fields.dc_name}",
+                      "url": "/explore?left={\"datasource\":\"tempo\",\"queries\":[{\"query\":\"{resource.dc.name=\\\"${__data.fields.dc_name}\\\"}\",\"queryType\":\"traceql\",\"refId\":\"A\"}],\"range\":{\"from\":\"now-1h\",\"to\":\"now\"}}"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "#F2495C",
+                        "value": 0
+                      },
+                      {
+                        "color": "#FF9830",
+                        "value": 85
+                      },
+                      {
+                        "color": "#FFEE52",
+                        "value": 90
+                      },
+                      {
+                        "color": "#73BF69",
+                        "value": 93
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "options": {
+                "controls": {
+                  "mouseWheelZoom": true,
+                  "showAttribution": true,
+                  "showDebug": false,
+                  "showMeasure": true,
+                  "showScale": true,
+                  "showZoom": true
+                },
+                "layers": [
+                  {
+                    "config": {
+                      "showLegend": true,
+                      "style": {
+                        "color": {
+                          "field": "health"
+                        },
+                        "opacity": 0.8,
+                        "size": {
+                          "field": "packages_per_hour",
+                          "fixed": 8,
+                          "max": 20,
+                          "min": 5
+                        },
+                        "symbol": {
+                          "fixed": "img/icons/marker/circle.svg",
+                          "mode": "fixed"
+                        },
+                        "text": {
+                          "field": "dc_name",
+                          "mode": "field"
+                        },
+                        "textConfig": {
+                          "fontSize": 11,
+                          "offsetX": 0,
+                          "offsetY": 15,
+                          "textAlign": "center",
+                          "textBaseline": "top"
+                        }
+                      }
+                    },
+                    "location": {
+                      "mode": "auto"
+                    },
+                    "name": "Distribution Centers",
+                    "tooltip": true,
+                    "type": "markers"
+                  }
+                ],
+                "tooltip": {
+                  "mode": "details"
+                },
+                "view": {
+                  "allLayers": true,
+                  "dashboardVariable": false,
+                  "id": "coords",
+                  "lat": 39.5,
+                  "lon": -98.35,
+                  "noRepeat": false,
+                  "zoom": 4.2
+                }
+              }
+            },
+            "version": "13.2.0-31997728368"
+          }
+        }
+      },
+      "panel-4": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "group": "testdata",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "alias": "Batch Processing Time (Min)",
+                        "scenarioId": "random_walk"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 4,
+          "links": [],
+          "title": "Route Optimization Engine Performance",
+          "vizConfig": {
+            "group": "timeseries",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "smooth",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "View Metrics in Explore",
+                      "url": "/explore?left={\"datasource\":\"grafanacloud-prom\",\"queries\":[{\"refId\":\"A\",\"expr\":\"your_metric_here\",\"range\":true}],\"range\":{\"from\":\"${__value.time:date:iso}\",\"to\":\"${__value.time:date:iso}\"}}"
+                    },
+                    {
+                      "targetBlank": false,
+                      "title": "View Logs in Explore",
+                      "url": "/explore?left={\"datasource\":\"grafanacloud-logs\",\"queries\":[{\"refId\":\"A\",\"expr\":\"{job=\\\"your-job\\\"}\",\"range\":true}],\"range\":{\"from\":\"${__value.time:date:iso}\",\"to\":\"${__value.time:date:iso}\"}}"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 60
+                      }
+                    ]
+                  },
+                  "unit": "m"
+                },
+                "overrides": []
+              },
+              "options": {
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              }
+            },
+            "version": "13.2.0-31997728368"
+          }
+        }
+      },
+      "panel-5": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "group": "testdata",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "scenarioId": "logs"
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 5,
+          "links": [],
+          "title": "Correlated Splunk Logs (Live Troubleshooting)",
+          "vizConfig": {
+            "group": "logs",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              },
+              "options": {
+                "dedupStrategy": "none",
+                "enableInfiniteScrolling": false,
+                "enableLogDetails": true,
+                "prettifyLogMessage": true,
+                "showControls": false,
+                "showFieldSelector": false,
+                "showLevel": true,
+                "showLogAttributes": true,
+                "showTime": true,
+                "sortOrder": "Descending",
+                "timestampResolution": "ms",
+                "unwrappedColumns": false,
+                "wrapLogMessage": true
+              }
+            },
+            "version": "13.2.0-31997728368"
+          }
+        }
+      },
+      "panel-6": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "af99i29pl69s0d"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "expr": "100 - (scrape_duration_seconds * 1000)",
+                        "instant": false,
+                        "queryType": "range",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 6,
+          "links": [],
+          "title": "Tracking Accuracy Over Time",
+          "vizConfig": {
+            "group": "timeseries",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  },
+                  "links": [
+                    {
+                      "targetBlank": false,
+                      "title": "View related metrics",
+                      "url": "/explore?left={\"datasource\":\"af99i29pl69s0d\",\"queries\":[{\"expr\":\"scrape_duration_seconds{${__field.labels}}\",\"refId\":\"A\"}],\"range\":{\"from\":\"${__value.time:date:iso}\",\"to\":\"${__value.time:date:iso}\"}}"
+                    },
+                    {
+                      "targetBlank": false,
+                      "title": "View logs",
+                      "url": "/explore?left={\"datasource\":\"grafanacloud-logs\",\"queries\":[{\"expr\":\"{${__field.labels}}\",\"refId\":\"A\"}],\"range\":{\"from\":\"${__value.time:date:iso}\",\"to\":\"${__value.time:date:iso}\"}}"
+                    }
+                  ],
+                  "max": 100,
+                  "min": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": 0
+                      },
+                      {
+                        "color": "green",
+                        "value": 99.9
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "options": {
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              }
+            },
+            "version": "13.2.0-31997728368"
+          }
+        }
+      }
+    },
+    "layout": {
+      "kind": "GridLayout",
+      "spec": {
+        "items": [
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-1"
+              },
+              "height": 5,
+              "width": 24,
+              "x": 0,
+              "y": 0
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-2"
+              },
+              "height": 6,
+              "width": 12,
+              "x": 0,
+              "y": 5
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-6"
+              },
+              "height": 6,
+              "width": 12,
+              "x": 12,
+              "y": 5
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-10"
+              },
+              "height": 7,
+              "width": 24,
+              "x": 0,
+              "y": 11
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-4"
+              },
+              "height": 8,
+              "width": 24,
+              "x": 0,
+              "y": 18
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-3"
+              },
+              "height": 12,
+              "width": 24,
+              "x": 0,
+              "y": 26
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-5"
+              },
+              "height": 6,
+              "width": 24,
+              "x": 0,
+              "y": 38
+            }
+          }
+        ]
+      }
+    },
+    "links": [],
+    "liveNow": false,
+    "preload": false,
+    "tags": [
+      "VelocityShip",
+      "Logistics",
+      "Demo"
+    ],
+    "timeSettings": {
+      "autoRefresh": "",
+      "autoRefreshIntervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "fiscalYearStartMonth": 0,
+      "from": "now-1h",
+      "hideTimepicker": false,
+      "timezone": "browser",
+      "to": "now"
+    },
+    "title": "VelocityShip Logistics Control Tower",
+    "variables": []
+  }
+}
