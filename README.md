@@ -13,6 +13,23 @@ On-Premise/     Dashboards for the On-Premise environment
 
 Each `.json` file is a single dashboard export. File names match the dashboard title.
 
+Each folder also has a `_folder.json` metadata file, e.g.:
+
+```json
+{
+  "apiVersion": "folder.grafana.app/v1",
+  "kind": "Folder",
+  "metadata": {
+    "name": "cloud"
+  },
+  "spec": {
+    "title": "Cloud"
+  }
+}
+```
+
+`metadata.name` is a stable folder UID that Grafana uses for permissions, bookmarks, and API references — it must stay the same even if the folder is renamed or moved. Without this file, Grafana derives the UID from the folder's path in the repo, which can silently change (and break permissions) if the path ever changes. Any new top-level folder added to this repo needs its own `_folder.json` with a unique `metadata.name`.
+
 ## Using this repo with Grafana Git Sync
 
 Git Sync (Grafana's Git-backed dashboard provisioning) keeps dashboards in Grafana and in this repo in sync.
