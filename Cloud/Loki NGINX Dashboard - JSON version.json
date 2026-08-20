@@ -2,7 +2,7 @@
   "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
-    "name": "loki-nginx-dashboard"
+    "name": "loki-nginx-dashboard1"
   },
   "spec": {
     "annotations": [
