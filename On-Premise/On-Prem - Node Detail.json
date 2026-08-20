@@ -2,7 +2,7 @@
   "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
-    "name": "netcrunch-node1"
+    "name": "netcrunch-node_1"
   },
   "spec": {
     "annotations": [

@@ -2,7 +2,7 @@
   "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
-    "name": "velocity_ship_v11"
+    "name": "velocity_ship_v1_1"
   },
   "spec": {
     "annotations": [
