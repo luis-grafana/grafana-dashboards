@@ -13,7 +13,7 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
+          "name": "Annotations \u0026 Alerts",
           "query": {
             "datasource": {
               "name": "-- Grafana --"
@@ -59,11 +59,11 @@
                   "showLineNumbers": false,
                   "showMiniMap": false
                 },
-                "content": "<div style='padding: 25px; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%); color: white; border-radius: 10px; box-shadow: 0 6px 12px rgba(0,0,0,0.15);'>\n  <div style='display: flex; align-items: center; justify-content: space-between;'>\n    <div>\n      <h1 style='margin: 0 0 8px 0; font-size: 32px; font-weight: 600;'>🌤️ Berlin Weather Forecast</h1>\n      <p style='margin: 0 0 15px 0; font-size: 16px; opacity: 0.95;'>Coordinates: 52.52°N, 13.41°E | Berlin, Germany</p>\n    </div>\n    <div style='text-align: right;'>\n      <div style='font-size: 48px; line-height: 1;'>🌡️</div>\n    </div>\n  </div>\n  <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;'>\n    <div style='padding: 12px; background: rgba(255,255,255,0.15); border-radius: 6px; border-left: 4px solid #4CAF50;'>\n      <div style='font-size: 12px; opacity: 0.9; margin-bottom: 4px;'>📊 HISTORICAL DATA</div>\n      <div style='font-size: 18px; font-weight: 600;'>Past 24 Hours</div>\n    </div>\n    <div style='padding: 12px; background: rgba(255,255,255,0.15); border-radius: 6px; border-left: 4px solid #2196F3;'>\n      <div style='font-size: 12px; opacity: 0.9; margin-bottom: 4px;'>🔮 FORECAST DATA</div>\n      <div style='font-size: 18px; font-weight: 600;'>Next 7+ Days</div>\n    </div>\n  </div>\n</div>",
+                "content": "\u003cdiv style='padding: 25px; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%); color: white; border-radius: 10px; box-shadow: 0 6px 12px rgba(0,0,0,0.15);'\u003e\n  \u003cdiv style='display: flex; align-items: center; justify-content: space-between;'\u003e\n    \u003cdiv\u003e\n      \u003ch1 style='margin: 0 0 8px 0; font-size: 32px; font-weight: 600;'\u003e🌤️ Berlin Weather Forecast\u003c/h1\u003e\n      \u003cp style='margin: 0 0 15px 0; font-size: 16px; opacity: 0.95;'\u003eCoordinates: 52.52°N, 13.41°E | Berlin, Germany\u003c/p\u003e\n    \u003c/div\u003e\n    \u003cdiv style='text-align: right;'\u003e\n      \u003cdiv style='font-size: 48px; line-height: 1;'\u003e🌡️\u003c/div\u003e\n    \u003c/div\u003e\n  \u003c/div\u003e\n  \u003cdiv style='display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;'\u003e\n    \u003cdiv style='padding: 12px; background: rgba(255,255,255,0.15); border-radius: 6px; border-left: 4px solid #4CAF50;'\u003e\n      \u003cdiv style='font-size: 12px; opacity: 0.9; margin-bottom: 4px;'\u003e📊 HISTORICAL DATA\u003c/div\u003e\n      \u003cdiv style='font-size: 18px; font-weight: 600;'\u003ePast 24 Hours\u003c/div\u003e\n    \u003c/div\u003e\n    \u003cdiv style='padding: 12px; background: rgba(255,255,255,0.15); border-radius: 6px; border-left: 4px solid #2196F3;'\u003e\n      \u003cdiv style='font-size: 12px; opacity: 0.9; margin-bottom: 4px;'\u003e🔮 FORECAST DATA\u003c/div\u003e\n      \u003cdiv style='font-size: 18px; font-weight: 600;'\u003eNext 7+ Days\u003c/div\u003e\n    \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/div\u003e",
                 "mode": "html"
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-35049663052"
           }
         }
       },
@@ -104,7 +104,7 @@
                         "root_selector": ".hourly.time as $time | .hourly.temperature_2m as $temp | [range(0; ($time | length))] | map({ time: $time[.], temperature_2m: $temp[.] })",
                         "source": "url",
                         "type": "json",
-                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&past_hours=24",
+                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52\u0026longitude=13.41\u0026hourly=temperature_2m\u0026past_hours=24",
                         "url_options": {
                           "data": "",
                           "method": "GET",
@@ -200,7 +200,7 @@
                 }
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-35049663052"
           }
         }
       },
@@ -241,7 +241,7 @@
                         "root_selector": ".hourly.time as $time | .hourly.relative_humidity_2m as $hum | [range(0; ($time | length))] | map({ time: $time[.], relative_humidity_2m: $hum[.] })",
                         "source": "url",
                         "type": "json",
-                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=relative_humidity_2m&past_hours=24",
+                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52\u0026longitude=13.41\u0026hourly=relative_humidity_2m\u0026past_hours=24",
                         "url_options": {
                           "data": "",
                           "method": "GET",
@@ -338,7 +338,7 @@
                 }
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-35049663052"
           }
         }
       },
@@ -379,7 +379,7 @@
                         "root_selector": ".hourly.time as $time | .hourly.wind_speed_10m as $wind | [range(0; ($time | length))] | map({ time: $time[.], wind_speed_10m: $wind[.] })",
                         "source": "url",
                         "type": "json",
-                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=wind_speed_10m&past_hours=24",
+                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52\u0026longitude=13.41\u0026hourly=wind_speed_10m\u0026past_hours=24",
                         "url_options": {
                           "data": "",
                           "method": "GET",
@@ -474,7 +474,7 @@
                 }
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-35049663052"
           }
         }
       },
@@ -515,7 +515,7 @@
                         "root_selector": "[{time: .current.time, temperature_2m: .current.temperature_2m}]",
                         "source": "url",
                         "type": "json",
-                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m&hourly=temperature_2m&forecast_days=1",
+                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52\u0026longitude=13.41\u0026current=temperature_2m\u0026hourly=temperature_2m\u0026forecast_days=1",
                         "url_options": {
                           "data": "",
                           "method": "GET",
@@ -596,7 +596,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-35049663052"
           }
         }
       },
@@ -637,7 +637,7 @@
                         "root_selector": "[{time: .current.time, relative_humidity_2m: .current.relative_humidity_2m}]",
                         "source": "url",
                         "type": "json",
-                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=relative_humidity_2m&hourly=relative_humidity_2m&forecast_days=1",
+                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52\u0026longitude=13.41\u0026current=relative_humidity_2m\u0026hourly=relative_humidity_2m\u0026forecast_days=1",
                         "url_options": {
                           "data": "",
                           "method": "GET",
@@ -720,7 +720,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-35049663052"
           }
         }
       },
@@ -761,7 +761,7 @@
                         "root_selector": "[{time: .current.time, wind_speed_10m: .current.wind_speed_10m}]",
                         "source": "url",
                         "type": "json",
-                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=wind_speed_10m&hourly=wind_speed_10m&forecast_days=1",
+                        "url": "https://api.open-meteo.com/v1/forecast?latitude=52.52\u0026longitude=13.41\u0026current=wind_speed_10m\u0026hourly=wind_speed_10m\u0026forecast_days=1",
                         "url_options": {
                           "data": "",
                           "method": "GET",
@@ -838,7 +838,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.2.0-31997728368"
+            "version": "13.3.0-35049663052"
           }
         }
       }
@@ -867,8 +867,8 @@
                 "kind": "ElementReference",
                 "name": "panel-5"
               },
-              "height": 5,
-              "width": 8,
+              "height": 3,
+              "width": 5,
               "x": 0,
               "y": 11
             }
