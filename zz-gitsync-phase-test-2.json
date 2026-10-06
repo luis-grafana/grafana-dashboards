@@ -1,0 +1,45 @@
+{
+  "apiVersion": "dashboard.grafana.app/v1",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "ddg0eohdub90xsa"
+  },
+  "spec": {
+    "panels": [
+      {
+        "gridPos": {
+          "h": 4,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "content": "Phase: ${phase} / CI name: ${phase.ci_name}",
+          "mode": "markdown"
+        },
+        "title": "phase",
+        "type": "text"
+      }
+    ],
+    "schemaVersion": 39,
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "text": "Preprod",
+            "value": "preprod"
+          },
+          "includeAll": false,
+          "label": "Phase",
+          "multi": false,
+          "name": "phase",
+          "query": "[{\"value\":\"preprod\",\"text\":\"Preprod\",\"ci_name\":\"app-preprod\"},{\"value\":\"prod\",\"text\":\"Prod\",\"ci_name\":\"app-prod\"}]",
+          "type": "custom",
+          "valuesFormat": "json"
+        }
+      ]
+    },
+    "title": "ZZ GitSync phase test 2"
+  }
+}
