@@ -1,0 +1,39 @@
+{
+  "apiVersion": "dashboard.grafana.app/v1",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "dag0enbdunu48wb"
+  },
+  "spec": {
+    "panels": [
+      {
+        "gridPos": {
+          "h": 4,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "content": "CI name: $ci_name",
+          "mode": "markdown"
+        },
+        "title": "ci_name",
+        "type": "text"
+      }
+    ],
+    "schemaVersion": 39,
+    "templating": {
+      "list": [
+        {
+          "hide": 2,
+          "name": "ci_name",
+          "query": "app-preprod",
+          "skipUrlSync": true,
+          "type": "constant"
+        }
+      ]
+    },
+    "title": "ZZ GitSync var test"
+  }
+}
